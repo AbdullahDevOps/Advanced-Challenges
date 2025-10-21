@@ -329,10 +329,8 @@ Code inconsistency	The fix might rely on other uncherry-picked commits, causing 
 History divergence	Frequent cherry-picks make branch histories harder to follow.	Use rebase or merges for regular syncs.
 Accidental overwrite	If cherry-picking large or old commits, changes can unintentionally overwrite recent code.	Always review diffs (git diff) before applying.
 
-
-
-
 Difference Between Merge and Rebase
+
 git merge
 
 Purpose: Combines changes from one branch into another without altering existing history.
