@@ -291,5 +291,44 @@ git stash apply stash@{0}   # applies stash and keeps it
 git stash pop               # applies stash and removes it
 
 
+Git Cherry-pick in Bug Fixes
+A. How Cherry-picking is Used in Bug Fixes
+
+Purpose: To apply a specific bug fix commit from one branch to another without merging unrelated changes.
+
+Typical use case:
+
+A critical bug is fixed in the dev branch, but the same fix is needed in main or a release branch.
+
+Instead of merging all development commits, you cherry-pick just the fix.
+
+Example:
+
+# Switch to the production branch
+git checkout main
+
+
+# Apply only the bug fix commit from dev
+git cherry-pick <commit-hash>
+
+This applies the exact changes from that commit and creates a new commit on main.
+
+Advantages:
+
+Isolates and quickly transfers critical fixes.
+
+Avoids unnecessary merges or extra commits.
+
+Useful in multi-version or long-term support (LTS) projects.
+
+B. Risks of Cherry-picking
+Risk	Explanation	Mitigation
+Duplicate commits	Each cherry-picked commit gets a new hash, leading to confusion if merged later.	Use tags or notes to track cherry-picked commits.
+Merge conflicts	If branches diverge, applying the same change may cause conflicts.	Resolve carefully and test after cherry-pick.
+Code inconsistency	The fix might rely on other uncherry-picked commits, causing missing dependencies.	Verify dependencies before cherry-picking.
+History divergence	Frequent cherry-picks make branch histories harder to follow.	Use rebase or merges for regular syncs.
+Accidental overwrite	If cherry-picking large or old commits, changes can unintentionally overwrite recent code.	Always review diffs (git diff) before applying.
+
+
 *End of document.*
 
